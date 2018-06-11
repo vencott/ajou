@@ -1,2 +1,1 @@
-# Department of software, Ajou University
-# 201321062 김정민
+- 201321062 김정민, Department of software, Ajou University
