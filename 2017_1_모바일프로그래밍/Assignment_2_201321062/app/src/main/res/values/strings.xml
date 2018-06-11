@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Assignment_2_201321062</string>
+    <string name="title">식당 예약 어플리케이션</string>
+    <string name="reserve_date">예약 날짜:</string>
+    <string name="reserve_people">예약 인원:</string>
+    <string name="reservation">예약하기</string>
+</resources>

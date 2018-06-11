@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Assignment3_201321062</string>
+    <string name="gear_large">Large gear</string>
+    <string name="gear_small">Small gear</string>
+    <string name="rotate_btn">Rotate Gears</string>
+    <string name="rotate_btn_xml">Rotate Gears(xml)</string>
+</resources>

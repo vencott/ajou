@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ajou.android.acma.ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/courseButton"
+            android:text="강의 목록"
+            android:onClick="onClick"
+            android:textStyle="bold"
+            android:textColor="@color/WHITE"
+            android:textSize="18dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/statisticButton"
+            android:text="강의 랭킹"
+            android:onClick="onClick"
+            android:textStyle="bold"
+            android:textColor="@color/WHITE"
+            android:textSize="18dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/scheduleButton"
+            android:text="시간표"
+            android:onClick="onClick"
+            android:textStyle="bold"
+            android:textColor="@color/WHITE"
+            android:textSize="18dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"/>
+        
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/mycourse">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="310dp"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/imageButton"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorPrimary"
+                    android:src="@drawable/learning" />
+
+                ,<TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="신청 목록"
+                    android:textColor="@color/WHITE"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/textviewUserEmail"
+                        android:textColor="@color/background"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/logoutButton"
+                        android:text="로그 아웃"
+                        android:onClick="onClick"
+                        android:textStyle="bold"
+                        android:textColor="@color/WHITE"
+                        android:textSize="18dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="8dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/delButton"
+                        android:text="회원 탈퇴"
+                        android:onClick="onClick"
+                        android:textStyle="bold"
+                        android:textColor="@color/WHITE"
+                        android:textSize="18dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/mycourseListview"
+                android:layout_margin="10dp"
+                android:dividerHeight="10dp"
+                android:divider="@color/WHITE"
+                ></ListView>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></RelativeLayout>
+    </FrameLayout>
+
+</LinearLayout>

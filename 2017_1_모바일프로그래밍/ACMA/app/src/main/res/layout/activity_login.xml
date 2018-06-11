@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ajou.android.acma.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/logo"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="예비수강신청"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:inputType="textEmailAddress"
+                android:id="@+id/idText"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+                android:drawableStart="@drawable/ic_perm_identity_black_24dp"
+                android:hint="ID(Email)"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:inputType="textPassword"
+                android:id="@+id/passwordText"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+                android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+                android:hint="PASSWORD"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="Log in"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/registerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="회원가입"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/findpasswordButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="비밀번호가 기억나지 않습니까?"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

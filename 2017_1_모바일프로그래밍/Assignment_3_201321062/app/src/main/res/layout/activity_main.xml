@@ -1,0 +1,31 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ajou.android.assignment3_201321062.MainActivity">
+
+    <com.ajou.android.assignment3_201321062.RotatingGearView
+        android:id="@+id/RotatingGearView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/rotate_btn"
+        />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="CCW"
+        android:textOff="CW"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/button"/>
+
+</RelativeLayout>

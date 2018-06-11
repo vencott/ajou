@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ajou.android.hms.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="MODE"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            />
+
+        <Button
+            android:id="@+id/receptionist_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/mode"
+            android:text="receptionist"/>
+
+        <Button
+            android:id="@+id/caregiver_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mode"
+            android:layout_centerHorizontal="true"
+            android:text="caregiver"/>
+
+        <Button
+            android:id="@+id/medicalteam_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/mode"
+            android:text="medicalteam"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SICKBED VIEW"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/sickbed_0"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="0"/>
+
+        <Button
+            android:id="@+id/sickbed_1"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/sickbed_0"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="1"/>
+
+        <Button
+            android:id="@+id/sickbed_2"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/sickbed_1"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="2"/>
+
+        <Button
+            android:id="@+id/sickbed_3"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/sickbed_2"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="3"/>
+
+        <Button
+            android:id="@+id/sickbed_4"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/sickbed_3"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="4"/>
+
+        <Button
+            android:id="@+id/sickbed_5"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="5"/>
+
+        <Button
+            android:id="@+id/sickbed_6"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/sickbed_5"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="6"/>
+
+        <Button
+            android:id="@+id/sickbed_7"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/sickbed_6"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="7"/>
+
+        <Button
+            android:id="@+id/sickbed_8"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/sickbed_7"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="8"/>
+
+        <Button
+            android:id="@+id/sickbed_9"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/sickbed_8"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorGreen"
+            android:text="9"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

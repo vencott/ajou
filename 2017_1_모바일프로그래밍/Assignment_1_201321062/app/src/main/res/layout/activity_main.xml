@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.ajou.android.assignment_1_201321062.MainActivity">
+    <TextView
+        android:id = "@+id/weightLBL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "@string/weightLBL"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true" />
+
+    <EditText
+        android:id = "@+id/TextEditor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/weightLBL" />
+
+    <TextView
+        android:id = "@+id/ouncesLBL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "@string/ouncesLBL"
+        android:gravity="center"
+        android:layout_below="@id/TextEditor" />
+
+    <TextView
+        android:id = "@+id/baseLBL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/baseLBL"
+        android:layout_alignBaseline="@+id/textBaseCost"
+        android:layout_alignBottom="@+id/textBaseCost"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:id = "@+id/addCostLBL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/addCostLBL"
+        android:layout_below="@id/baseLBL"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:id = "@+id/totalLBL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/totalLBL"
+        android:layout_below="@id/addCostLBL"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:id = "@+id/textBaseCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/zeroDec"
+        android:layout_below="@id/TextEditor"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="107dp"
+        android:layout_marginRight="10dp"/>
+
+    <TextView
+        android:id = "@+id/textAddedCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/zeroDec"
+        android:layout_below="@id/textBaseCost"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"/>
+
+    <TextView
+        android:id = "@+id/textTotalCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/zeroDec"
+        android:layout_below="@id/textAddedCost"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/Linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/totalLBL"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <ImageButton
+            android:id="@+id/bookPlus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/plus"
+            android:scaleType="centerInside"
+            android:padding="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/book"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="@string/book"
+            android:textSize="25dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_below="@+id/totalLBL"
+            android:layout_toRightOf="@id/totalLBL"
+            android:layout_toEndOf="@id/totalLBL"
+            android:layout_weight="20"/>
+
+        <TextView
+            android:id="@+id/bookNum"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="20"/>
+
+        <ImageButton
+            android:id="@+id/bookMinus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/minus"
+            android:scaleType="centerInside"
+            android:padding="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/Linear1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <ImageButton
+            android:id="@+id/pencilPlus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/plus"
+            android:scaleType="centerInside"
+            android:padding="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/pencil"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pencil"
+            android:textSize="25dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_below="@+id/totalLBL"
+            android:layout_toRightOf="@id/totalLBL"
+            android:layout_toEndOf="@id/totalLBL"
+            android:layout_weight="20"/>
+
+        <TextView
+            android:id="@+id/pencilNum"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="20"/>
+
+        <ImageButton
+            android:id="@+id/pencilMinus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/minus"
+            android:scaleType="centerInside"
+            android:padding="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/Linear2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <ImageButton
+            android:id="@+id/eraserPlus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/plus"
+            android:scaleType="centerInside"
+            android:padding="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/eraser"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eraser"
+            android:textSize="25dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_below="@+id/totalLBL"
+            android:layout_toRightOf="@id/totalLBL"
+            android:layout_toEndOf="@id/totalLBL"
+            android:layout_weight="20"/>
+
+        <TextView
+            android:id="@+id/eraserNum"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="20"/>
+
+        <ImageButton
+            android:id="@+id/eraserMinus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/minus"
+            android:scaleType="centerInside"
+            android:padding="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</RelativeLayout>

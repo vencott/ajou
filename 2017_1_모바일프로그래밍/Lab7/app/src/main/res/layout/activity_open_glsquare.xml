@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ajou.android.lab7.OpenGLSquareActivity">
+
+    <com.ajou.android.lab7.MyGLSurfaceView
+        android:id="@+id/myGLSurfaceView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START ANIMATION"
+        android:onClick="onClick"
+        android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/stopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STOP ANIMATION"
+        android:onClick="onClickStop"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+
+</RelativeLayout>

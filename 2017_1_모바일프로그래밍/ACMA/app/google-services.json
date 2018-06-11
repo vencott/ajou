@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "585930948395",
+    "firebase_url": "https://acma-17e57.firebaseio.com",
+    "project_id": "acma-17e57",
+    "storage_bucket": "acma-17e57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585930948395:android:9a2adfa2dbff7e26",
+        "android_client_info": {
+          "package_name": "com.ajou.android.acma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585930948395-v5c0q6blr59v3369mhs0vto6dorrferq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJqgTSKaUWwrA9UPpZWfWL1EDdZ5Ij8Og"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

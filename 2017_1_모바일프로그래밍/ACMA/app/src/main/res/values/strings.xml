@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ACMA</string>
+    <string name="lecture_register">수강신청</string>
+    <string name="lecture_rangking">강의랭킹</string>
+    <string name="timetable">시간표</string>
+
+    <string name="lecture_name">강의명</string>
+    <string name="lecture_major">전공</string>
+    <string name="lecture_professor">교수</string>
+    <string name="lecture_code">과목코드</string>
+    <string name="lecture_location">강의실</string>
+    <string name="lecture_time">시간</string>
+    <string name="lecture_maxNum">제한인원</string>
+    <string name="lecture_num">신청인원</string>
+    <string name="lecture_grade">학점</string>
+
+    <string name="register_button">신청하기</string>
+
+    <string name="hint">과목명을 정확히 입력하세요</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

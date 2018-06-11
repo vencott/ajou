@@ -1,0 +1,710 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ajou.android.acma.ScheduleFragment">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="13dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="수"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="목"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="금"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:text="A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/WHITE"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:gravity="right"/>
+
+            <TextView
+                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/mondayA"/>
+
+            <TextView
+                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/tuesdayA"/>
+
+            <TextView
+                android:text="수"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/wednesdayA"/>
+
+            <TextView
+                android:text="목"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/thursdayA"/>
+
+            <TextView
+                android:text="금"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/fridayA"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:text="B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:gravity="right"/>
+
+            <TextView
+                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/mondayB"/>
+
+            <TextView
+                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/tuesdayB"/>
+
+            <TextView
+                android:text="수"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/wednesdayB"/>
+
+            <TextView
+                android:text="목"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/thursdayB"/>
+
+            <TextView
+                android:text="금"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/fridayB"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:text="C"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:gravity="right"/>
+
+            <TextView
+                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/mondayC"/>
+
+            <TextView
+                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/tuesdayC"/>
+
+            <TextView
+                android:text="수"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/wednesdayC"/>
+
+            <TextView
+                android:text="목"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/thursdayC"/>
+
+            <TextView
+                android:text="금"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/fridayC"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:text="D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:gravity="right"/>
+
+            <TextView
+                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/mondayD"/>
+
+            <TextView
+                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/tuesdayD"/>
+
+            <TextView
+                android:text="수"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/wednesdayD"/>
+
+            <TextView
+                android:text="목"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/thursdayD"/>
+
+            <TextView
+                android:text="금"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/fridayD"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:text="E"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:gravity="right"/>
+
+            <TextView
+                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/mondayE"/>
+
+            <TextView
+                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/tuesdayE"/>
+
+            <TextView
+                android:text="수"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/wednesdayE"/>
+
+            <TextView
+                android:text="목"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/thursdayE"/>
+
+            <TextView
+                android:text="금"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/fridayE"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:text="F"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/WHITE"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:gravity="right"/>
+
+            <TextView
+                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/mondayF"/>
+
+            <TextView
+                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/tuesdayF"/>
+
+            <TextView
+                android:text="수"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/wednesdayF"/>
+
+            <TextView
+                android:text="목"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/thursdayF"/>
+
+            <TextView
+                android:text="금"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/fridayF"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:text="G"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:gravity="right"/>
+
+            <TextView
+                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/mondayG"/>
+
+            <TextView
+                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/tuesdayG"/>
+
+            <TextView
+                android:text="수"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/wednesdayG"/>
+
+            <TextView
+                android:text="목"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/thursdayG"/>
+
+            <TextView
+                android:text="금"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/fridayG"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:text="H"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/WHITE"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:gravity="right"/>
+
+            <TextView
+                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/mondayH"/>
+
+            <TextView
+                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/tuesdayH"/>
+
+            <TextView
+                android:text="수"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/wednesdayH"/>
+
+            <TextView
+                android:text="목"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/thursdayH"/>
+
+            <TextView
+                android:text="금"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:background="@drawable/cell_shape"
+                android:id="@+id/fridayH"/>
+
+        </TableRow>
+
+
+    </TableLayout>
+</FrameLayout>

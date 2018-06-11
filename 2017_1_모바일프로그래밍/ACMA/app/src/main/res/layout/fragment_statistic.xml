@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ajou.android.acma.StatisticFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="등록한 "
+            android:textColor="@color/BLACK"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="총 학점"
+            android:textColor="@color/Accent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="은 "
+            android:textColor="@color/BLACK"/>
+
+        <TextView
+            android:id="@+id/totalCredit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="19학점"
+            android:textColor="@color/Red"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 입니다."
+            android:textColor="@color/BLACK"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Gray"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="3dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강의 인기 순위: "
+            android:textColor="@color/Accent"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/rankSpinner"></Spinner>
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/WHITE"
+        android:layout_margin="10dp">
+
+            <ListView
+            android:id="@+id/rankListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/WHITE"
+            android:dividerHeight="10dp"
+            android:padding="5dp">
+
+            </ListView>
+
+        </LinearLayout>
+
+</LinearLayout>

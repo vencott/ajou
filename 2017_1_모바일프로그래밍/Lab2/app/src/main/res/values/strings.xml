@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lab2</string>
+    <string name="weightLBL">Weight of the Package</string>
+    <string name="ouncesLBL">(in ounces)</string>
+    <string name="baseLBL">Base Cost:</string>
+    <string name="addCostLBL">Added Cost:</string>
+    <string name="totalLBL">Total Shiping Cost:</string>
+    <string name="zeroDec">$0.00</string>
+    <string name="zero">0</string>
+</resources>

@@ -1,0 +1,59 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:custom="http://schemas.android.com/apk/res-auto"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="#FFFFFF"
+             android:orientation="vertical">
+
+    <com.ajou.android.lab5.CanvasView
+        android:id="@+id/signature_canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/White"/>
+
+    <Button
+        android:id="@+id/undoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/undo"
+        android:layout_gravity="left"/>
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear"
+        android:layout_gravity="right"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/pinkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pink"
+            android:background="@color/Pink"/>
+
+        <Button
+            android:id="@+id/blackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/black"
+            android:textColor="@color/White"
+            android:background="@color/Black"/>
+
+        <Button
+            android:id="@+id/greenButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/green"
+            android:background="@color/Green"/>
+    </LinearLayout>
+
+</FrameLayout>

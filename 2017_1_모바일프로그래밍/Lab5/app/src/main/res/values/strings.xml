@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Lab5</string>
+    <string name="clear">CLEAR</string>
+    <string name="undo">UNDO</string>
+    <string name="pink">PINK</string>
+    <string name="black">BLACK</string>
+    <string name="green">GREEN</string>
+</resources>
