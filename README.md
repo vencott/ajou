@@ -1,1 +1,0 @@
-- 201321062 김정민, Department of software, Ajou University
