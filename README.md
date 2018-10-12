@@ -1,3 +1,3 @@
 # ajou
-Projects &amp; assignments
+projects &amp; assignments
 - Department of software, Ajou University
