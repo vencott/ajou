@@ -1,9 +1,18 @@
 package com.f041.team4;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import com.f041.team4.data.Account;
 import com.f041.team4.data.Session;
@@ -24,15 +33,58 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.security.Key;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     List<Session> sessionList;
 
+    RecyclerView recyclerView;
+    Adapter adapter;
+
+    private FloatingActionButton fab_main, fab_refresh, fab_add;
+    private Animation fab_open, fab_close;
+    private boolean isFabOpen = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sessionList = new ArrayList<>();
+
+        recyclerView = findViewById(R.id.view_recycler);
+        adapter = new Adapter(sessionList);
+        recyclerView.setAdapter(adapter);
+
+        fab_open = AnimationUtils.loadAnimation(this, R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(this, R.anim.fab_close);
+
+        fab_main = findViewById(R.id.fab_main);
+        fab_refresh = findViewById(R.id.fab_refresh);
+        fab_add = findViewById(R.id.fab_add);
+
+
+        fab_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleFab();
+            }
+        });
+        fab_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refresh();
+                toggleFab();
+            }
+        });
+        fab_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startSession("jungmin");
+                toggleFab();
+            }
+        });
 
         register();
     }
@@ -52,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseManager.getInstance().sessionsRef.add(createNewSession(receiver)).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-
+                        refresh();
                     }
                 });
             }
@@ -70,17 +122,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void refresh() {
+        if (Account.getInstance().getName() == null)
+            return;
+
         FirebaseManager.getInstance().sessionsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
+                    sessionList.clear();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Session session = document.toObject(Session.class);
-                        sessionList.clear();
                         if (Account.getInstance().getName().equals(session.getInitiator()) || Account.getInstance().getName().equals(session.getReceiver()))
                             sessionList.add(session);
-                        // notifydatasetchanged
                     }
+                    adapter.notifyDataSetChanged();
                 }
 
             }
@@ -104,7 +159,72 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void toggleFab() {
+        if (isFabOpen) {
+            fab_main.setImageResource(R.drawable.ic_plus);
+            fab_refresh.startAnimation(fab_close);
+            fab_add.startAnimation(fab_close);
+            fab_refresh.setClickable(false);
+            fab_add.setClickable(false);
+            isFabOpen = false;
+        } else {
+            fab_main.setImageResource(R.drawable.ic_close);
+            fab_refresh.startAnimation(fab_open);
+            fab_add.startAnimation(fab_open);
+            fab_refresh.setClickable(true);
+            fab_add.setClickable(true);
+            isFabOpen = true;
+        }
+    }
 }
+
+class ViewHolder extends RecyclerView.ViewHolder {
+    TextView tvWith;
+    TextView tvEnabled;
+
+    public ViewHolder(@NonNull View itemView) {
+        super(itemView);
+        tvWith = itemView.findViewById(R.id.tv_with);
+        tvEnabled = itemView.findViewById(R.id.tv_enabled);
+    }
+
+    public void setUi(String name, boolean enable) {
+        tvWith.setText(name + "님과의 Session");
+        tvEnabled.setText(enable ? "연결됨" : "연결안됨");
+        tvEnabled.setTextColor(enable ? Color.BLUE : Color.RED);
+    }
+}
+
+class Adapter extends RecyclerView.Adapter<ViewHolder> {
+
+    private List<Session> sessionList;
+
+    public Adapter(List<Session> sessionList) {
+        this.sessionList = sessionList;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
+        ViewHolder vh = new ViewHolder(v);
+        return vh;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        Session session = sessionList.get(i);
+        String with = Account.getInstance().getName().equals(session.getReceiver()) ? session.getInitiator() : session.getReceiver();
+        viewHolder.setUi(with, session.isEnabled());
+    }
+
+    @Override
+    public int getItemCount() {
+        return sessionList.size();
+    }
+}
+
 
 /*
 세션에 들어갔을때
