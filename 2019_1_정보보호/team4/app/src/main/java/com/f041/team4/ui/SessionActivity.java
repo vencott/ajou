@@ -35,19 +35,17 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class SessionActivity extends AppCompatActivity {
-
-    RecyclerView recyclerView;
-
     String encryptedSessionKey;
     String initiator;
     String receiver;
     boolean amIReceiver;
+    List<Message> messageList;
     Adapter adapter;
+
+    RecyclerView recyclerView;
     LinearLayout llInput;
     EditText etMessage;
     TextView btnSend;
-
-    List<Message> messageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +73,10 @@ public class SessionActivity extends AppCompatActivity {
             }
         });
 
+        listen();
+    }
+
+    void listen() {
         FirebaseManager.getInstance().messagesRef.whereEqualTo("encryptedSessionKey", encryptedSessionKey).orderBy("time", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -134,7 +136,7 @@ public class SessionActivity extends AppCompatActivity {
     class Adapter extends RecyclerView.Adapter<ViewHolder> {
         private List<Message> messageList;
 
-        public Adapter(List<Message> messageList) {
+        Adapter(List<Message> messageList) {
             this.messageList = messageList;
         }
 
@@ -167,7 +169,7 @@ public class SessionActivity extends AppCompatActivity {
         View rightBlank;
         View messageBlank;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
             tvMessage = itemView.findViewById(R.id.tv_message);
@@ -184,12 +186,12 @@ public class SessionActivity extends AppCompatActivity {
             });
         }
 
-        public void setItem(Message message) {
+        void setItem(Message message) {
             this.message = message;
             setUi();
         }
 
-        public void setUi() {
+        void setUi() {
             if (isMyMessage(message.getFrom())) {
                 rightBlank.setVisibility(View.GONE);
                 leftBlank.setVisibility(View.VISIBLE);

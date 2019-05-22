@@ -21,7 +21,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.security.Key;
 
 public class MessageActivity extends AppCompatActivity {
-
     boolean isInitialMessage;
     String encrypted;
     String encryptedSessionKey;

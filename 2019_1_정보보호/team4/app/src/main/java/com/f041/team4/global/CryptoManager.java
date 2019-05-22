@@ -49,7 +49,7 @@ public class CryptoManager {
         return ret;
     }
 
-    // Encrypt, decrypt keys
+    // Encrypt, decrypt session key
     public static String encryptSessionKey(Algorithm algorithm, Key sessionKey, PublicKey publicKey) {
         String ret = null;
         try {

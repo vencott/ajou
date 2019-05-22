@@ -44,14 +44,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     List<Session> sessionList;
     Adapter adapter;
-    Animation fabOpen, fabClose;
-    boolean isFabOpen = false;
 
     RecyclerView recyclerView;
     FloatingActionButton mainFab, refreshFab, addFab;
+    Animation fabOpen, fabClose;
+    boolean isFabOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
         fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
         fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close);
-
         mainFab = findViewById(R.id.fab_main);
         refreshFab = findViewById(R.id.fab_refresh);
         addFab = findViewById(R.id.fab_add);
-
         mainFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -216,10 +213,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     class Adapter extends RecyclerView.Adapter<ViewHolder> {
-
         private List<Session> sessionList;
 
-        public Adapter(List<Session> sessionList) {
+        Adapter(List<Session> sessionList) {
             this.sessionList = sessionList;
         }
 
@@ -245,10 +241,11 @@ public class MainActivity extends AppCompatActivity {
 
     class ViewHolder extends RecyclerView.ViewHolder {
         Session session;
+
         TextView tvWith;
         TextView tvEnabled;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvWith = itemView.findViewById(R.id.tv_with);
             tvEnabled = itemView.findViewById(R.id.tv_enabled);
@@ -261,14 +258,13 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        public void setItem(Session session) {
+        void setItem(Session session) {
             this.session = session;
             setUi();
         }
 
-        public void setUi() {
+        void setUi() {
             String with = Account.getInstance().getName().equals(session.getReceiver()) ? session.getInitiator() : session.getReceiver();
-
             tvWith.setText(with + "님과의 Session");
             tvEnabled.setText(session.isEnabled() ? "세션키 교환 전" : "세션키 교환 완료");
             tvEnabled.setTextColor(session.isEnabled() ? Color.BLUE : Color.RED);

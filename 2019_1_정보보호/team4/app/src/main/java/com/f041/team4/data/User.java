@@ -9,7 +9,6 @@ public class User {
     String encodedPublicKey;
 
     public User() {
-
     }
 
     public User(String name, String encodedPublicKey) {
@@ -32,9 +31,5 @@ public class User {
 
     public String getEncodedPublicKey() {
         return encodedPublicKey;
-    }
-
-    public void setEncodedPublicKey(String encodedPublicKey) {
-        this.encodedPublicKey = encodedPublicKey;
     }
 }

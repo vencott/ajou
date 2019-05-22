@@ -25,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         etName = findViewById(R.id.et_name);
-
+        barProgress = findViewById(R.id.bar_progress);
         btnRegister = findViewById(R.id.btn_register);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        barProgress = findViewById(R.id.bar_progress);
     }
 
     void register(String name) {

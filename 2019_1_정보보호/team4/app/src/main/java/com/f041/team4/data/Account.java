@@ -9,7 +9,6 @@ import java.security.PublicKey;
 
 public class Account {
     private static Account instance = new Account();
-
     String name;
     PublicKey publicKey;
     PrivateKey privateKey;
@@ -23,7 +22,7 @@ public class Account {
     }
 
     private void initKeys() {
-        KeyPair keyPair = KeyManager.createNewKeyPair(Algorithm.RSA); // RSA algorithm 이용한 public, private key 생성
+        KeyPair keyPair = KeyManager.createNewKeyPair(Algorithm.RSA);
         this.publicKey = keyPair.getPublic();
         this.privateKey = keyPair.getPrivate();
     }
@@ -40,15 +39,7 @@ public class Account {
         return publicKey;
     }
 
-    public void setPublicKey(PublicKey publicKey) {
-        this.publicKey = publicKey;
-    }
-
     public PrivateKey getPrivateKey() {
         return privateKey;
-    }
-
-    public void setPrivateKey(PrivateKey privateKey) {
-        this.privateKey = privateKey;
     }
 }

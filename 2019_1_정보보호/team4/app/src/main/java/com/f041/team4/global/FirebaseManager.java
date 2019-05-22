@@ -5,7 +5,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FirebaseManager {
     private static FirebaseManager instance = new FirebaseManager();
-
     public FirebaseFirestore db;
     public CollectionReference usersRef;
     public CollectionReference sessionsRef;

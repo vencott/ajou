@@ -7,7 +7,6 @@ public class Session {
     boolean enabled;
 
     public Session() {
-
     }
 
     public Session(String initiator, String receiver, String encryptedSessionKey, boolean enabled) {
@@ -21,31 +20,15 @@ public class Session {
         return initiator;
     }
 
-    public void setInitiator(String initiator) {
-        this.initiator = initiator;
-    }
-
     public String getReceiver() {
         return receiver;
-    }
-
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
     }
 
     public String getEncryptedSessionKey() {
         return encryptedSessionKey;
     }
 
-    public void setEncryptedSessionKey(String encryptedSessionKey) {
-        this.encryptedSessionKey = encryptedSessionKey;
-    }
-
     public boolean isEnabled() {
         return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 }
