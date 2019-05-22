@@ -1,11 +1,13 @@
 package com.f041.team4;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.f041.team4.data.Account;
@@ -84,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
         addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 다이얼로그 띄워서 이름 받기
-                startSession("jungmin");
+                showDialog();
                 toggleFab();
             }
         });
@@ -96,6 +98,24 @@ public class MainActivity extends AppCompatActivity {
     void register() {
         Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
         startActivityForResult(intent, Constants.REGISTER);
+    }
+
+    void showDialog() {
+        AlertDialog.Builder ad = new AlertDialog.Builder(MainActivity.this);
+        ad.setTitle("세션 생성");
+        ad.setMessage("세션을 연결할 상대방의 이름을 입력해주세요");
+
+        final EditText et = new EditText(MainActivity.this);
+        ad.setView(et);
+        ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String with = et.getText().toString();
+                startSession(with);
+                dialog.dismiss();
+            }
+        });
+        ad.show();
     }
 
     void startSession(String with) {
@@ -117,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void sendInitialMessage(Session session) {
-        Message message = new Message(session.getInitiator(), session.getReceiver(), session.getEncryptedSessionKey(), Constants.INIT_MESSAGE);
+        Message message = new Message(session.getInitiator(), session.getReceiver(), session.getEncryptedSessionKey(), Constants.INIT_MESSAGE, System.currentTimeMillis());
         FirebaseManager.getInstance().messagesRef.add(message).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {

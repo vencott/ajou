@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.f041.team4.R;
 import com.f041.team4.data.Account;
@@ -18,14 +17,19 @@ import com.f041.team4.global.Algorithm;
 import com.f041.team4.global.Constants;
 import com.f041.team4.global.CryptoManager;
 import com.f041.team4.global.FirebaseManager;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 public class SessionActivity extends AppCompatActivity {
 
@@ -39,7 +43,6 @@ public class SessionActivity extends AppCompatActivity {
 
     List<Message> messageList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,19 +53,47 @@ public class SessionActivity extends AppCompatActivity {
         receiver = getIntent().getStringExtra("receiver");
         amIReceiver = receiver.equals(Account.getInstance().getName());
 
-
         messageList = new ArrayList<>();
         adapter = new Adapter(messageList);
 
         recyclerView = findViewById(R.id.view_recycler);
         recyclerView.setAdapter(adapter);
 
-        refresh();
+        FirebaseManager.getInstance().messagesRef.whereEqualTo("encryptedSessionKey", encryptedSessionKey).orderBy("time", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null)
+                    return;
+                messageList.clear();
+                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                    Message message = doc.toObject(Message.class);
+                    if (isInitMessage(message.getMessage()) && isMyMessage(message.getFrom()))
+                        message.setMessage("상대방의 Public Key로 Session Key를 암호화하여 전송하였습니다.");
+                    messageList.add(message);
+                }
+                adapter.notifyDataSetChanged();
+                recyclerView.smoothScrollToPosition(adapter.getItemCount());
+            }
+        });
     }
 
     void decryptSessionKey() {
         Key sessionKey = CryptoManager.decryptSessionKey(Algorithm.RSA, encryptedSessionKey, Account.getInstance().getPrivateKey());
 
+    }
+
+    void writeMessage() {
+        Message message = new Message(Account.getInstance().getName(), amIReceiver ? initiator : receiver, encryptedSessionKey, messageList.size() + "", System.currentTimeMillis());
+        FirebaseManager.getInstance().messagesRef.add(message).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+
+            }
+        });
+    }
+
+    boolean isMyMessage(String name) {
+        return name.equals(Account.getInstance().getName());
     }
 
     boolean isInitMessage(String message) {
@@ -73,22 +104,6 @@ public class SessionActivity extends AppCompatActivity {
         return message.equals(Constants.REPLY_MESSAGE);
     }
 
-    void refresh() {
-        FirebaseManager.getInstance().messagesRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    messageList.clear();
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Message message = document.toObject(Message.class);
-                        if (message.getEncryptedSessionKey().equals(encryptedSessionKey))
-                            messageList.add(message);
-                    }
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        });
-    }
 
     class Adapter extends RecyclerView.Adapter<ViewHolder> {
         private List<Message> messageList;
@@ -126,7 +141,6 @@ public class SessionActivity extends AppCompatActivity {
         View rightBlank;
         View messageBlank;
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
@@ -134,6 +148,13 @@ public class SessionActivity extends AppCompatActivity {
             leftBlank = itemView.findViewById(R.id.blank_left);
             rightBlank = itemView.findViewById(R.id.blank_right);
             messageBlank = itemView.findViewById(R.id.blank_message);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    
+                }
+            });
         }
 
         public void setItem(Message message) {
@@ -142,9 +163,7 @@ public class SessionActivity extends AppCompatActivity {
         }
 
         public void setUi() {
-            boolean isMyMessage = message.getFrom().equals(Account.getInstance().getName());
-
-            if (isMyMessage) {
+            if (isMyMessage(message.getFrom())) {
                 rightBlank.setVisibility(View.GONE);
                 leftBlank.setVisibility(View.VISIBLE);
                 tvName.setGravity(Gravity.RIGHT);

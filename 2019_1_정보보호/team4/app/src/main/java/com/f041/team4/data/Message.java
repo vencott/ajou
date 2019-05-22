@@ -5,16 +5,18 @@ public class Message {
     String to;
     String encryptedSessionKey;
     String message;
+    Long time;
 
     public Message() {
 
     }
 
-    public Message(String from, String to, String encryptedSessionKey, String message) {
+    public Message(String from, String to, String encryptedSessionKey, String message, Long time) {
         this.from = from;
         this.to = to;
         this.encryptedSessionKey = encryptedSessionKey;
         this.message = message;
+        this.time = time;
     }
 
     public String getFrom() {
@@ -47,5 +49,13 @@ public class Message {
 
     public void setEncryptedSessionKey(String encryptedSessionKey) {
         this.encryptedSessionKey = encryptedSessionKey;
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 }
