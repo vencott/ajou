@@ -184,24 +184,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    void acceptSession() {
-        FirebaseManager.getInstance().sessionsRef.whereEqualTo("receiver", Account.getInstance().getName()).whereEqualTo("enabled", false).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                List<Session> sessions = queryDocumentSnapshots.toObjects(Session.class);
-                Session session = sessions.get(0);
-                Key sessionKey = CryptoManager.decryptSessionKey(Algorithm.RSA, session.getEncryptedSessionKey(), Account.getInstance().getPrivateKey());
-                SessionManager.getInstance().add(new SessionPair(sessionKey, session.getEncryptedSessionKey()));
-                FirebaseManager.getInstance().sessionsRef.document(queryDocumentSnapshots.getDocuments().get(0).getId()).update("enabled", true).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        refresh();
-                    }
-                });
-            }
-        });
-    }
-
     private void toggleFab() {
         if (isFabOpen) {
             mainFab.setImageResource(R.drawable.ic_plus);
@@ -288,20 +270,8 @@ public class MainActivity extends AppCompatActivity {
             String with = Account.getInstance().getName().equals(session.getReceiver()) ? session.getInitiator() : session.getReceiver();
 
             tvWith.setText(with + "님과의 Session");
-            tvEnabled.setText(session.isEnabled() ? "연결됨" : "연결안됨");
+            tvEnabled.setText(session.isEnabled() ? "세션키 교환 전" : "세션키 교환 완료");
             tvEnabled.setTextColor(session.isEnabled() ? Color.BLUE : Color.RED);
         }
     }
 }
-
-
-/*
-세션에 들어갔을때
-1. enabled
-    - 세션의 encryptedSession을 SessionPairs에서 찾아 실제 세션 키 알아냄
-2. disabled
-    - initiater
-        - 아직 상대방이 accept 안함 메시지
-    - receiver
-        - accept과정
-*/
