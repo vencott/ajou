@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -15,15 +16,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.f041.team4.data.Account;
+import com.f041.team4.data.Message;
 import com.f041.team4.data.Session;
 import com.f041.team4.data.SessionPair;
 import com.f041.team4.data.User;
 import com.f041.team4.global.Algorithm;
+import com.f041.team4.global.Constants;
 import com.f041.team4.global.CryptoManager;
 import com.f041.team4.global.FirebaseManager;
 import com.f041.team4.global.KeyManager;
 import com.f041.team4.global.SessionManager;
 import com.f041.team4.ui.RegisterActivity;
+import com.f041.team4.ui.SessionActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -37,14 +41,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     List<Session> sessionList;
+    Adapter adapter;
+    Animation fabOpen, fabClose;
+    boolean isFabOpen = false;
 
     RecyclerView recyclerView;
-    Adapter adapter;
-
-    private FloatingActionButton fab_main, fab_refresh, fab_add;
-    private Animation fab_open, fab_close;
-    private boolean isFabOpen = false;
+    FloatingActionButton mainFab, refreshFab, addFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,35 +56,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sessionList = new ArrayList<>();
+        adapter = new Adapter(sessionList);
 
         recyclerView = findViewById(R.id.view_recycler);
-        adapter = new Adapter(sessionList);
         recyclerView.setAdapter(adapter);
 
-        fab_open = AnimationUtils.loadAnimation(this, R.anim.fab_open);
-        fab_close = AnimationUtils.loadAnimation(this, R.anim.fab_close);
+        fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
+        fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close);
 
-        fab_main = findViewById(R.id.fab_main);
-        fab_refresh = findViewById(R.id.fab_refresh);
-        fab_add = findViewById(R.id.fab_add);
+        mainFab = findViewById(R.id.fab_main);
+        refreshFab = findViewById(R.id.fab_refresh);
+        addFab = findViewById(R.id.fab_add);
 
-
-        fab_main.setOnClickListener(new View.OnClickListener() {
+        mainFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggleFab();
             }
         });
-        fab_refresh.setOnClickListener(new View.OnClickListener() {
+        refreshFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 refresh();
                 toggleFab();
             }
         });
-        fab_add.setOnClickListener(new View.OnClickListener() {
+        addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 다이얼로그 띄워서 이름 받기
                 startSession("jungmin");
                 toggleFab();
             }
@@ -91,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     void register() {
         Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, Constants.REGISTER);
     }
 
     void startSession(String with) {
@@ -100,15 +104,34 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 List<User> users = queryDocumentSnapshots.toObjects(User.class);
                 User receiver = users.get(0);
+                final Session session = createNewSession(receiver);
 
-                FirebaseManager.getInstance().sessionsRef.add(createNewSession(receiver)).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                FirebaseManager.getInstance().sessionsRef.add(session).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        refresh();
+                        sendInitialMessage(session);
                     }
                 });
             }
         });
+    }
+
+    void sendInitialMessage(Session session) {
+        Message message = new Message(session.getInitiator(), session.getReceiver(), session.getEncryptedSessionKey(), Constants.INIT_MESSAGE);
+        FirebaseManager.getInstance().messagesRef.add(message).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                refresh();
+            }
+        });
+    }
+
+    void openSession(Session session) {
+        Intent intent = new Intent(MainActivity.this, SessionActivity.class);
+        intent.putExtra("encryptedSessionKey", session.getEncryptedSessionKey());
+        intent.putExtra("initiator", session.getInitiator());
+        intent.putExtra("receiver", session.getReceiver());
+        startActivityForResult(intent, Constants.SESSION);
     }
 
     Session createNewSession(User receiver) {
@@ -137,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     adapter.notifyDataSetChanged();
                 }
-
             }
         });
     }
@@ -162,66 +184,93 @@ public class MainActivity extends AppCompatActivity {
 
     private void toggleFab() {
         if (isFabOpen) {
-            fab_main.setImageResource(R.drawable.ic_plus);
-            fab_refresh.startAnimation(fab_close);
-            fab_add.startAnimation(fab_close);
-            fab_refresh.setClickable(false);
-            fab_add.setClickable(false);
+            mainFab.setImageResource(R.drawable.ic_plus);
+            refreshFab.startAnimation(fabClose);
+            addFab.startAnimation(fabClose);
+            refreshFab.setClickable(false);
+            addFab.setClickable(false);
             isFabOpen = false;
         } else {
-            fab_main.setImageResource(R.drawable.ic_close);
-            fab_refresh.startAnimation(fab_open);
-            fab_add.startAnimation(fab_open);
-            fab_refresh.setClickable(true);
-            fab_add.setClickable(true);
+            mainFab.setImageResource(R.drawable.ic_close);
+            refreshFab.startAnimation(fabOpen);
+            addFab.startAnimation(fabOpen);
+            refreshFab.setClickable(true);
+            addFab.setClickable(true);
             isFabOpen = true;
         }
     }
-}
-
-class ViewHolder extends RecyclerView.ViewHolder {
-    TextView tvWith;
-    TextView tvEnabled;
-
-    public ViewHolder(@NonNull View itemView) {
-        super(itemView);
-        tvWith = itemView.findViewById(R.id.tv_with);
-        tvEnabled = itemView.findViewById(R.id.tv_enabled);
-    }
-
-    public void setUi(String name, boolean enable) {
-        tvWith.setText(name + "님과의 Session");
-        tvEnabled.setText(enable ? "연결됨" : "연결안됨");
-        tvEnabled.setTextColor(enable ? Color.BLUE : Color.RED);
-    }
-}
-
-class Adapter extends RecyclerView.Adapter<ViewHolder> {
-
-    private List<Session> sessionList;
-
-    public Adapter(List<Session> sessionList) {
-        this.sessionList = sessionList;
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
-    }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Session session = sessionList.get(i);
-        String with = Account.getInstance().getName().equals(session.getReceiver()) ? session.getInitiator() : session.getReceiver();
-        viewHolder.setUi(with, session.isEnabled());
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case Constants.REGISTER:
+                case Constants.SESSION:
+                    refresh();
+                    break;
+            }
+        }
     }
 
-    @Override
-    public int getItemCount() {
-        return sessionList.size();
+    class Adapter extends RecyclerView.Adapter<ViewHolder> {
+
+        private List<Session> sessionList;
+
+        public Adapter(List<Session> sessionList) {
+            this.sessionList = sessionList;
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_session, viewGroup, false);
+            ViewHolder vh = new ViewHolder(v);
+            return vh;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+            Session session = sessionList.get(i);
+            viewHolder.setItem(session);
+        }
+
+        @Override
+        public int getItemCount() {
+            return sessionList.size();
+        }
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+        Session session;
+        TextView tvWith;
+        TextView tvEnabled;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvWith = itemView.findViewById(R.id.tv_with);
+            tvEnabled = itemView.findViewById(R.id.tv_enabled);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openSession(session);
+                }
+            });
+        }
+
+        public void setItem(Session session) {
+            this.session = session;
+            setUi();
+        }
+
+        public void setUi() {
+            String with = Account.getInstance().getName().equals(session.getReceiver()) ? session.getInitiator() : session.getReceiver();
+
+            tvWith.setText(with + "님과의 Session");
+            tvEnabled.setText(session.isEnabled() ? "연결됨" : "연결안됨");
+            tvEnabled.setTextColor(session.isEnabled() ? Color.BLUE : Color.RED);
+        }
     }
 }
 

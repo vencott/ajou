@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EFEFF1"
     tools:context=".MainActivity">
 
     <android.support.v7.widget.RecyclerView
@@ -26,7 +27,6 @@
         android:visibility="invisible"
         app:borderWidth="0dp"
         app:fabSize="normal" />
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add"

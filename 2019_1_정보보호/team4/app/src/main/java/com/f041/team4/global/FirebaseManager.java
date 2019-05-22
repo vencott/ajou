@@ -9,11 +9,13 @@ public class FirebaseManager {
     public FirebaseFirestore db;
     public CollectionReference usersRef;
     public CollectionReference sessionsRef;
+    public CollectionReference messagesRef;
 
     private FirebaseManager() {
         db = FirebaseFirestore.getInstance();
         usersRef = db.collection("users");
         sessionsRef = db.collection("sessions");
+        messagesRef = db.collection("messages");
     }
 
     public static FirebaseManager getInstance() {

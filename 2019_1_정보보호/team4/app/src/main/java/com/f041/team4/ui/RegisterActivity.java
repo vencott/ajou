@@ -44,8 +44,13 @@ public class RegisterActivity extends AppCompatActivity {
         FirebaseManager.getInstance().usersRef.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                RegisterActivity.this.finish();
+                finishActivity();
             }
         });
+    }
+
+    void finishActivity() {
+        setResult(RESULT_OK, null);
+        finish();
     }
 }
