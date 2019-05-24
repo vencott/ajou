@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
         void setUi() {
             String with = Account.getInstance().getName().equals(session.getReceiver()) ? session.getInitiator() : session.getReceiver();
             tvWith.setText(with + "님과의 Session");
-            tvEnabled.setText(session.isEnabled() ? "세션키 교환 전" : "세션키 교환 완료");
+            tvEnabled.setText(!session.isEnabled() ? "세션키 교환 전" : "세션키 교환 완료");
             tvEnabled.setTextColor(session.isEnabled() ? Color.BLUE : Color.RED);
         }
     }
